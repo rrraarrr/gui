@@ -276,11 +276,7 @@ function Lib:WinCheck( Win )
             end
         end
 
-        --// Cursor
-        if Lib.Cursor and Lib.Active then
-            dx9.DrawCircle({Mouse.x, Mouse.y}, Lib.Black, 3)
-            dx9.DrawCircle({Mouse.x, Mouse.y}, Lib.CurrentRainbowColor, 2)
-        end
+
     end
 end
 
@@ -1573,11 +1569,7 @@ function Lib:CreateWindow( params ) --// Title, FontColor, MainColor, Background
                         Holding = false;
                         Value = (params.Default or nil);
 
-                        --[[Maybe make Cursors?
-                        CursorPosition = string.len(params.Default or "") + 1;
-                        CursorVisible = false;
-                        LastCursorBlink = nil;
-                        ]]
+        
 
                         Reading = false;
                         Capslock = false;
