@@ -105,7 +105,7 @@ if _G.Lib == nil then
         Key = dx9.GetKey();
 
         --// Cursor
-        Cursor = false;
+        Cursor = true;
      };
 end
 local Lib = _G.Lib
@@ -260,27 +260,25 @@ end
 local use_count = 0
 
 function Lib:WinCheck( Win )
-    
-    use_count = use_count + 1
-    
-    if use_count > Lib.InitIndex then Lib.InitIndex = use_count end
-    
-    if Lib.InitIndex == use_count then
-        for i,v in pairs( Lib.Windows ) do
-            if v.WindowNum > Win.WindowNum then
-                v:Render()
-            end
+    
+    use_count = use_count + 1
+    
+    if use_count > Lib.InitIndex then Lib.InitIndex = use_count end
+    
+    if Lib.InitIndex == use_count then
+        for i,v in pairs( Lib.Windows ) do
+            if v.WindowNum > Win.WindowNum then
+                v:Render()
+            end
 
-            if v.OpenTool then
-                v.OpenTool:Render()
-            end
-        end
+            if v.OpenTool then
+                v.OpenTool:Render()
+            end
+        end
 
-
-    end
+        --// Cursor
+    end
 end
-
-
 --[[
 ██╗  ██╗ ██████╗  ██████╗ ██╗  ██╗███████╗
 ██║  ██║██╔═══██╗██╔═══██╗██║ ██╔╝██╔════╝
@@ -1569,7 +1567,11 @@ function Lib:CreateWindow( params ) --// Title, FontColor, MainColor, Background
                         Holding = false;
                         Value = (params.Default or nil);
 
-        
+                        --[[Maybe make Cursors?
+                        CursorPosition = string.len(params.Default or "") + 1;
+                        CursorVisible = false;
+                        LastCursorBlink = nil;
+                        ]]
 
                         Reading = false;
                         Capslock = false;
